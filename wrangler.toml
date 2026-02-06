@@ -1,5 +1,9 @@
-name = "aisalarymap"
-compatibility_date = "2024-01-01"
+name = "aisalarymap"           # Project name
+type = "javascript"            # Project type
+account_id = "09d1800e63fa269aa5796a9f57fb6293"  # Cloudflare account ID
+workers_dev = true             # Use workers.dev subdomain
+route = ""                     # Optional: domain route, empty for default
+zone_id = ""                   # Optional: zone ID if custom domain
 
-[site]
-bucket = ".next"
+# This tells Pages where the build output folder is
+pages_build_output_dir = "out"
