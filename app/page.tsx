@@ -14,7 +14,7 @@ const demoData = [
   { city: "Sydney, Australia", role: "Deep Learning Engineer", salary: 8900, rent: 2600, internet_speed: "400 Mbps", flag: "🇦🇺" },
 ];
 
-// Animated Counter Component
+// Animated Counter Component (Fixed)
 const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '' }: { end: number; duration?: number; prefix?: string; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
@@ -59,10 +59,11 @@ const AnimatedCounter = ({ end, duration = 2000, prefix = '', suffix = '' }: { e
   return <span ref={countRef}>{prefix}{count.toLocaleString()}{suffix}</span>;
 };
 
-// Floating Particles Component
+// Floating Particles Component (Fixed - Client Only)
 const FloatingParticles = () => {
   const [mounted, setMounted] = useState(false);
   
+  // Fixed particle positions (no random)
   const particles = useMemo(() => [
     { size: 8, left: 10, top: 20, duration: 15, delay: 0 },
     { size: 6, left: 25, top: 40, duration: 18, delay: 2 },
@@ -109,7 +110,7 @@ const FloatingParticles = () => {
   );
 };
 
-// Mouse Glow Component
+// Mouse Glow Component (Client Only)
 const MouseGlow = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mounted, setMounted] = useState(false);
@@ -150,6 +151,7 @@ export default function Home() {
   const [calcOther, setCalcOther] = useState(300);
   const [showCalculator, setShowCalculator] = useState(false);
 
+  // Fix hydration - wait for mount
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -176,8 +178,10 @@ export default function Home() {
       overflow: 'hidden'
     }}>
       
+      {/* Mouse Tracking Glow - Client Only */}
       <MouseGlow />
       
+      {/* Static Background Gradients */}
       <div style={{
         position: 'fixed',
         inset: 0,
@@ -190,6 +194,7 @@ export default function Home() {
         zIndex: 0
       }}/>
       
+      {/* Floating Particles - Client Only */}
       <FloatingParticles />
 
       {/* Glowing Orbs */}
@@ -227,6 +232,7 @@ export default function Home() {
         position: 'relative',
         zIndex: 10
       }}>
+        {/* Animated Logo */}
         <div style={{
           display: 'inline-block',
           marginBottom: '20px',
@@ -249,6 +255,7 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Main Title with Gradient */}
         <h1 style={{
           fontSize: 'clamp(40px, 8vw, 72px)',
           fontWeight: '900',
@@ -263,6 +270,7 @@ export default function Home() {
           AI Salary Map
         </h1>
         
+        {/* Subtitle */}
         <p style={{
           fontSize: 'clamp(16px, 3vw, 22px)',
           color: 'rgba(255,255,255,0.7)',
@@ -275,7 +283,7 @@ export default function Home() {
           <span style={{ color: '#22d3ee', fontWeight: '600' }}> 500+ global cities</span>
         </p>
 
-        {/* Stats */}
+        {/* Animated Stats */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -287,7 +295,7 @@ export default function Home() {
             { num: 500, label: 'Cities', icon: '🌆', color: '#6366f1' },
             { num: 20, label: 'AI Roles', icon: '🤖', color: '#ec4899' },
             { num: 10000, label: 'Data Points', icon: '📊', color: '#22d3ee' },
-            { num: 2024, label: 'Updated', icon: '✨', color: '#a855f7' }
+            { num: 2026, label: 'Updated', icon: '✨', color: '#a855f7' }
           ].map((stat, i) => (
             <div key={i} style={{
               background: 'rgba(255,255,255,0.05)',
@@ -326,7 +334,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Search Bar */}
+        {/* Premium Search Bar */}
         <div style={{
           maxWidth: '800px',
           margin: '0 auto',
@@ -456,10 +464,10 @@ export default function Home() {
               🧮
             </div>
             <div>
-              <h3 style={{ color: 'white', fontSize: '22px', fontWeight: '700', marginBottom: '4px', margin: 0 }}>
+              <h3 style={{ color: 'white', fontSize: '22px', fontWeight: '700', marginBottom: '4px' }}>
                 Savings Calculator
               </h3>
-              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', margin: 0 }}>
+              <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px' }}>
                 Calculate how much you can save in any city
               </p>
             </div>
@@ -494,6 +502,7 @@ export default function Home() {
               gap: '24px',
               marginBottom: '32px'
             }}>
+              {/* Salary Input */}
               <div>
                 <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>
                   💰 Monthly Salary ($)
@@ -517,6 +526,7 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Rent Input */}
               <div>
                 <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>
                   🏠 Monthly Rent ($)
@@ -540,6 +550,7 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Food Input */}
               <div>
                 <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>
                   🍔 Food & Groceries ($)
@@ -563,6 +574,7 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Other Expenses */}
               <div>
                 <label style={{ display: 'block', color: 'rgba(255,255,255,0.7)', marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>
                   📱 Other Expenses ($)
@@ -587,6 +599,7 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Results */}
             <div style={{
               background: totalSavings > 0 
                 ? 'linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2))'
@@ -680,6 +693,7 @@ export default function Home() {
       }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           
+          {/* Section Title */}
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
             <h2 style={{
               fontSize: '36px',
@@ -695,6 +709,7 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Loading State */}
           {!mounted ? (
             <div style={{ textAlign: 'center', padding: '100px' }}>
               <div style={{
@@ -720,149 +735,160 @@ export default function Home() {
                 const savings = item.salary - item.rent - 800;
                 
                 return (
-                  <div
+                  <Link
                     key={index}
-                    style={{
-                      background: 'rgba(255,255,255,0.03)',
-                      backdropFilter: 'blur(20px)',
-                      borderRadius: '24px',
-                      padding: '28px',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                      cursor: 'pointer',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      height: '100%'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
-                      e.currentTarget.style.boxShadow = '0 30px 60px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.5)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                      e.currentTarget.style.boxShadow = 'none';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                    }}
+                    href={`/salary/${citySlug}/${roleSlug}`}
+                    style={{ textDecoration: 'none' }}
                   >
-                    <div style={{
-                      position: 'absolute',
-                      top: '20px',
-                      right: '20px',
-                      background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-                      color: 'white',
-                      padding: '6px 14px',
-                      borderRadius: '20px',
-                      fontSize: '11px',
-                      fontWeight: '700',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
-                      boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)'
-                    }}>
-                      {item.role.split(' ')[0]}
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-                      <span style={{ fontSize: '36px' }}>{item.flag}</span>
-                      <div>
-                        <h3 style={{
-                          fontSize: '24px',
-                          fontWeight: '700',
-                          color: 'white',
-                          marginBottom: '2px',
-                          margin: 0
-                        }}>
-                          {item.city.split(',')[0]}
-                        </h3>
-                        <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>
-                          {item.city.split(',')[1] || ''}
-                        </span>
+                    <div 
+                      style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        backdropFilter: 'blur(20px)',
+                        borderRadius: '24px',
+                        padding: '28px',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                        cursor: 'pointer',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        height: '100%'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+                        e.currentTarget.style.boxShadow = '0 30px 60px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.5)';
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                      }}
+                    >
+                      {/* Role Badge */}
+                      <div style={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '20px',
+                        background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+                        color: 'white',
+                        padding: '6px 14px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                        boxShadow: '0 4px 15px rgba(99, 102, 241, 0.4)'
+                      }}>
+                        {item.role.split(' ')[0]}
                       </div>
-                    </div>
 
-                    <p style={{
-                      color: 'rgba(255,255,255,0.6)',
-                      fontSize: '14px',
-                      marginBottom: '24px'
-                    }}>
-                      {item.role}
-                    </p>
-
-                    <div style={{
-                      fontSize: '42px',
-                      fontWeight: '900',
-                      background: 'linear-gradient(135deg, #fff 0%, #a5b4fc 100%)',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      marginBottom: '24px',
-                      lineHeight: 1
-                    }}>
-                      ${item.salary.toLocaleString()}
-                      <span style={{ fontSize: '16px', opacity: 0.7 }}>/mo</span>
-                    </div>
-
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr 1fr',
-                      gap: '16px',
-                      paddingTop: '20px',
-                      borderTop: '1px solid rgba(255,255,255,0.1)'
-                    }}>
-                      <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          🏠 Rent
-                        </div>
-                        <div style={{ fontSize: '18px', fontWeight: '700', color: '#f9a8d4' }}>
-                          ${item.rent.toLocaleString()}
+                      {/* Flag & City */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                        <span style={{ fontSize: '36px' }}>{item.flag}</span>
+                        <div>
+                          <h3 style={{
+                            fontSize: '24px',
+                            fontWeight: '700',
+                            color: 'white',
+                            marginBottom: '2px'
+                          }}>
+                            {item.city.split(',')[0]}
+                          </h3>
+                          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>
+                            {item.city.split(',')[1] || ''}
+                          </span>
                         </div>
                       </div>
-                      <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          💰 Save
-                        </div>
-                        <div style={{ 
-                          fontSize: '18px', 
-                          fontWeight: '700', 
-                          color: savings > 3000 ? '#4ade80' : '#fbbf24'
-                        }}>
-                          +${savings.toLocaleString()}
-                        </div>
-                      </div>
-                      <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          📶 Speed
-                        </div>
-                        <div style={{ fontSize: '18px', fontWeight: '700', color: '#67e8f9' }}>
-                          {item.internet_speed.split(' ')[0]}
-                        </div>
-                      </div>
-                    </div>
 
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '20px',
-                      right: '20px',
-                      width: '40px',
-                      height: '40px',
-                      background: 'linear-gradient(135deg, #6366f1, #ec4899)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      opacity: 0.7,
-                      transition: 'all 0.3s',
-                      color: 'white',
-                      fontSize: '16px'
-                    }}>
-                      →
+                      {/* Role */}
+                      <p style={{
+                        color: 'rgba(255,255,255,0.6)',
+                        fontSize: '14px',
+                        marginBottom: '24px'
+                      }}>
+                        {item.role}
+                      </p>
+
+                      {/* Salary - Big Number */}
+                      <div style={{
+                        fontSize: '42px',
+                        fontWeight: '900',
+                        background: 'linear-gradient(135deg, #fff 0%, #a5b4fc 100%)',
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        marginBottom: '24px',
+                        lineHeight: 1
+                      }}>
+                        ${item.salary.toLocaleString()}
+                        <span style={{ fontSize: '16px', opacity: 0.7 }}>/mo</span>
+                      </div>
+
+                      {/* Stats Grid */}
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr 1fr',
+                        gap: '16px',
+                        paddingTop: '20px',
+                        borderTop: '1px solid rgba(255,255,255,0.1)'
+                      }}>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                            🏠 Rent
+                          </div>
+                          <div style={{ fontSize: '18px', fontWeight: '700', color: '#f9a8d4' }}>
+                            ${item.rent.toLocaleString()}
+                          </div>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                            💰 Save
+                          </div>
+                          <div style={{ 
+                            fontSize: '18px', 
+                            fontWeight: '700', 
+                            color: savings > 3000 ? '#4ade80' : '#fbbf24'
+                          }}>
+                            +${savings.toLocaleString()}
+                          </div>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                            📶 Speed
+                          </div>
+                          <div style={{ fontSize: '18px', fontWeight: '700', color: '#67e8f9' }}>
+                            {item.internet_speed.split(' ')[0]}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Hover Arrow */}
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '20px',
+                        right: '20px',
+                        width: '40px',
+                        height: '40px',
+                        background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        opacity: 0.7,
+                        transition: 'all 0.3s',
+                        color: 'white',
+                        fontSize: '16px'
+                      }}>
+                        →
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
           )}
 
+          {/* No Results */}
           {filteredData.length === 0 && mounted && (
             <div style={{
               textAlign: 'center',
@@ -883,7 +909,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Premium Footer */}
       <footer style={{
         background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%)',
         padding: '80px 20px 40px',
@@ -893,14 +919,143 @@ export default function Home() {
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          textAlign: 'center',
-          color: 'rgba(255,255,255,0.4)',
-          fontSize: '14px'
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '40px'
         }}>
-          <p>© 2024 AI Salary Map. Made with 💜 for AI professionals worldwide.</p>
+          {/* Brand */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '24px'
+              }}>
+                🌍
+              </div>
+              <span style={{ color: 'white', fontSize: '24px', fontWeight: '800' }}>AI Salary Map</span>
+            </div>
+            <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: '1.8', fontSize: '14px' }}>
+              The most comprehensive salary database for AI professionals worldwide. 
+              Make informed career decisions with real-time data.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 style={{ color: 'white', fontSize: '16px', fontWeight: '700', marginBottom: '20px' }}>
+              🔗 Quick Links
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, lineHeight: '2.5' }}>
+              {['Home', 'About', 'Privacy', 'Contact'].map((link) => (
+                <li key={link}>
+                  <a href="#" style={{ 
+                    color: 'rgba(255,255,255,0.6)', 
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    transition: 'color 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#a5b4fc'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+                  >
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Top Cities */}
+          <div>
+            <h4 style={{ color: 'white', fontSize: '16px', fontWeight: '700', marginBottom: '20px' }}>
+              🌆 Top Cities
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, lineHeight: '2.5' }}>
+              {['San Francisco', 'Dubai', 'Singapore', 'London'].map((city) => (
+                <li key={city}>
+                  <a href="#" style={{ 
+                    color: 'rgba(255,255,255,0.6)', 
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    transition: 'color 0.3s'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#f9a8d4'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
+                  >
+                    {city}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 style={{ color: 'white', fontSize: '16px', fontWeight: '700', marginBottom: '20px' }}>
+              📬 Stay Updated
+            </h4>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', marginBottom: '16px' }}>
+              Get weekly salary insights
+            </p>
+            <div style={{
+              display: 'flex',
+              background: 'rgba(255,255,255,0.1)',
+              borderRadius: '12px',
+              padding: '4px',
+              border: '1px solid rgba(255,255,255,0.1)'
+            }}>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                style={{
+                  flex: 1,
+                  background: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  padding: '12px',
+                  color: 'white',
+                  fontSize: '14px'
+                }}
+              />
+              <button style={{
+                background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+                border: 'none',
+                padding: '12px 20px',
+                borderRadius: '10px',
+                color: 'white',
+                fontWeight: '600',
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'transform 0.3s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright - Fixed year */}
+        <div style={{
+          marginTop: '60px',
+          paddingTop: '30px',
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          textAlign: 'center',
+          fontSize: '13px',
+          color: 'rgba(255,255,255,0.4)'
+        }}>
+          <p>© 2026 AI Salary Map. Made with 💜 for AI professionals worldwide.</p>
         </div>
       </footer>
 
+      {/* Global CSS Animations */}
       <style jsx global>{`
         * {
           margin: 0;
